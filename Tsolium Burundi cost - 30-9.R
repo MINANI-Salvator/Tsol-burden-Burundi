@@ -145,17 +145,16 @@ n_visit_med <- runif(n, n_visit_med_min, n_visit_med_max)
 
 ## price of traditional healer (NA)
 
-## Epilepsy treatment probability, multinomial parameters
-p_treatment <- c(0.37,0.13, 0.07, 0.43)
+## Epilepsy treatment probability, Dirichlet distribution
+p_treatment <- c(11, 4, 2, 13)
 
 n_ncc3 <-(n_hosp+n_medheal)
 
-xyz <- rmultinom(n, n_ncc3, p_treatment)
-n_Carb <- xyz[1, ]
-n_PhB<- xyz[2, ]
-n_PhT <- xyz[3, ]
-n_Valproate <- xyz[4, ]
-
+xyz <- rdirichlet(n, p_treatment)
+n_Carb <- xyz[,1]* n_ncc3
+n_PhB<- xyz[,2]* n_ncc3
+n_PhT <- xyz[,3]* n_ncc3
+n_Valproate <- xyz[,4]* n_ncc3
 
 ## working days per year
 working_days <- runif(n, working_days_min, working_days_max)
