@@ -50,9 +50,9 @@ n_visit_med_max <- 12
 ## number of visits to a traditional healer, fixed (NOT APPLICABLE)
 
 
-## loss of working time days per year, Uniform parameters 
-loss_workingtime_min <- 2
-loss_workingtime_max <- 24
+## loss of working time days per year, Gamma parameters 
+loss_workingtime_shape <- 4.8
+loss_workingtime_rate <- 0.4
 
 ## probability of losing job, Beta parameters
 unemployed_duetoepilepsy_alpha <- 57
@@ -65,9 +65,9 @@ working_days_max <- 312
 ## proportion of active population, Fixed
 active <- 0.5506
 
-## monthly salary,Uniform parameter
-monthly_salary_min <- 30000
-monthly_salary_max <- 150000
+## monthly salary, Gamma parameter
+monthly_salary_shape <- 2.16
+monthly_salary_rate <- 2.4e-05
 
 ## cost of medication (Consultation), Fixed
 price_med <- 3000
@@ -86,18 +86,17 @@ price_Valproate <- 10150
 ## number of working days per month, Fixed
 n_working_day_by_month <- 26
 
-
 ## PIGS
 
-##Gross national per capita income (GNI)
+##Gross national per capita income (GNI) in USD
 GNI <- 270
 
 ## pig population sizes, Fixed
 n_pigs_smallscale <- 708867
 
-## value of a pig, Uniform parameters
-price_pigs_min <- 100000
-price_pigs_max <- 200000
+## value of a pig, Gamma parameters
+price_pigs_shape <- 7.5
+price_pigs_rate <- 5e-05
 
 ## Reduction price for a pig, Uniform parameters
 price_loss_pigs_min <- 0.7
@@ -160,14 +159,13 @@ n_Valproate <- xyz[,4]* n_ncc3
 working_days <- runif(n, working_days_min, working_days_max)
 
 ## loss of work, corrected
-loss_workingtime <- runif(n, loss_workingtime_min, loss_workingtime_max)
+loss_workingtime <- rgamma(n, loss_workingtime_shape, loss_workingtime_rate)
 n_days1 <- n_ncc * active * rbeta(n,unemployed_duetoepilepsy_alpha,unemployed_duetoepilepsy_beta) * working_days
 n_days2 <- n_ncc * active * (1 - rbeta(n,unemployed_duetoepilepsy_alpha,unemployed_duetoepilepsy_beta)) * loss_workingtime
 n_days_inactivity <- n_days1 + n_days2
 
 ## monthly salary
-monthly_salary <- runif(n, monthly_salary_min, monthly_salary_max)
-
+monthly_salary <- rgamma(n, monthly_salary_shape, monthly_salary_rate)
 
 ###
 ### SIMULATIONS, PIGS
@@ -177,7 +175,7 @@ monthly_salary <- runif(n, monthly_salary_min, monthly_salary_max)
 prev_pigs <- rbeta(n, prev_pigs_alpha, prev_pigs_beta)
 
 ## value of pig
-price_pigs <- runif(n, price_pigs_min, price_pigs_max)
+price_pigs <- rgamma(n, price_pigs_shape, price_pigs_rate)
 
 ##Price reduction of pig
 price_loss_pigs<-runif(n, price_loss_pigs_min,price_loss_pigs_max)
@@ -195,7 +193,6 @@ cost_hosp <- stay * runif(n,price_day_hosp_min,price_day_hosp_max)
 cost_med <- (n_visit_med * price_med * n_medheal)
 
 ## traditional healer costs (NA)
-
 
 ## medication costs
 

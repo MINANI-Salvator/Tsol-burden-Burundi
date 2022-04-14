@@ -248,7 +248,7 @@ daly <- yld + yll
 daly_all <- apply(daly, 3, sum)
 
 ## zDALY calculation: ALE per 1000 persons year
-ALE<-0.641
+ALE<-0.6411
 
 ###
 ### SUMMARIES
@@ -292,6 +292,9 @@ Summary(rowSums(ep_ncc_nt_N)/sum(pop_mx))
 
 ##zDALY calculation per thousand person years
 zDALY<-1e3 * daly_all / sum(pop_mx)+ALE
+Summary(zDALY)
+##zDALY calculation per 100 thousand person years
+zDALY<-1e5 * daly_all / sum(pop_mx)+ALE*100
 Summary(zDALY)
 
 ## contribution ALE and DALY per thousand person years in z-DALY
