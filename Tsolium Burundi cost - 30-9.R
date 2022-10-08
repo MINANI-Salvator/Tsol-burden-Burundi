@@ -92,7 +92,7 @@ n_working_day_by_month <- 26
 GNI <- 270
 
 ## pig population sizes, Fixed
-n_pigs_smallscale <- 708867
+n_pigs_smallscale <- 846948
 
 ## value of a pig, Gamma parameters
 price_pigs_shape <- 7.5
@@ -104,7 +104,7 @@ price_loss_pigs_max <- 0.8
 
 
 ## proportion of pigs sold per year, Fixed (Assumption)
-pigs_sold <- 0.3
+pigs_sold <- 0.315
 
 ## porcine cysticercosis prevalence, Beta parameters
 prev_pigs_alpha <- 77
