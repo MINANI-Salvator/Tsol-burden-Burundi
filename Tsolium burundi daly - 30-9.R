@@ -248,7 +248,7 @@ daly <- yld + yll
 daly_all <- apply(daly, 3, sum)
 
 ## zDALY calculation: ALE per 1000 persons year
-ALE<-0.6411
+ALE<-0.8017
 
 ###
 ### SUMMARIES
