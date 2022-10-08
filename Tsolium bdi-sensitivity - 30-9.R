@@ -133,7 +133,7 @@ sa_daly_pcc
 
 ## tornado graph
 daly_items <-
-c("E prevalence", "Proportion of NCC-associated E",
+c("Prevalence of E", "Proportion of NCC-associated E",
   "E case-fatality ratio", "E disability weight (untreated)",
   "E disability weight (treated)", "Treatment proportion")
 
